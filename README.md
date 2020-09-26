@@ -1,0 +1,1 @@
+# Run Azure SQL commands using Ad authentication

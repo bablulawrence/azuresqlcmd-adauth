@@ -1,0 +1,48 @@
+name: "Azure Sql Command with Ad Auth"
+
+description: "Run Azure SQL Command using Azure AD authentication"
+
+inputs:
+  tenant_id:
+    description: "Azure Active Directory Tenant Id"
+    required: true
+  service_principal_id:
+    description: "Service Principal Id"
+    required: true
+  service_principal_secret:
+    description: "Service Principal Secret "
+    required: true
+  sql_server_name:
+    description: "Name of Azure SQL Server"
+    required: true
+  sql_db_name:
+    description: "Name of Azure SQL DB"
+    required: true
+  query_string:
+    description: "Query string"
+    required: false
+  query_file:
+    description: "Query file"
+    required: false
+  return_result_flag:
+    description: "Return result flag"
+    required: false
+    default: "No"
+outputs:
+  count:
+    description: "Count of result"
+  result:
+    description: "Result of query execution"
+runs:
+  using: "docker"
+  image: "docker://bablulawrence/azuresqlcmd-adauth:latest"
+  # image: "Dockerfile"
+  args:
+    - ${{ inputs.tenant_id }}
+    - ${{ inputs.service_principal_id }}
+    - ${{ inputs.service_principal_secret }}
+    - ${{ inputs.sql_server_name }}
+    - ${{ inputs.sql_db_name }}
+    - ${{ inputs.query_string }}
+    - ${{ inputs.query_file }}
+    - ${{ inputs.return_result_flag }}
