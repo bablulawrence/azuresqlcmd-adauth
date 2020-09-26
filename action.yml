@@ -1,7 +1,9 @@
-name: "Azure Sql Command with Ad Auth"
-
-description: "Run Azure SQL Command using Azure AD authentication"
-
+name: "Azure SQL Commands using AD auth"
+description: "Execute Azure SQL Commands using Azure AD authentication"
+author: "Bablu Lawrence"
+branding:
+  icon: "database"
+  color: "blue"
 inputs:
   tenant_id:
     description: "Azure Active Directory Tenant Id"
