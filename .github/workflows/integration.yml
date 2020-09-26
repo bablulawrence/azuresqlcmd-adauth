@@ -1,0 +1,29 @@
+name: Integration Test
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Replace Dockerfile source to local in action.yml
+        run: |
+          sed -i 's/.*image\:.*/  image\: \"Dockerfile\"/' action.yml
+          cat action.yml
+      - name: Test
+        id: test
+        uses: ./
+        with:
+          tenant_id: ${{ secrets.TENANT_ID }}
+          service_principal_id: ${{ secrets.SERVICE_PRINCIPAL_ID }}
+          service_principal_secret: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
+          sql_server_name: ${{ secrets.SQL_SERVER_NAME }}
+          sql_db_name: ${{ secrets.SQL_DB_NAME }}
+          query_string: "SELECT 1"
+          return_result_flag: "Yes"
+      - name: Validate output
+        run: |
+          test "${{ steps.test.outputs.count }}" == "1"

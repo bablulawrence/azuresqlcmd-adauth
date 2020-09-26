@@ -36,7 +36,6 @@ outputs:
 runs:
   using: "docker"
   image: "docker://bablulawrence/azuresqlcmd-adauth:0.1"
-  # image: "Dockerfile"
   args:
     - ${{ inputs.tenant_id }}
     - ${{ inputs.service_principal_id }}
