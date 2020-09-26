@@ -35,7 +35,7 @@ outputs:
     description: "Result of query execution"
 runs:
   using: "docker"
-  image: "docker://bablulawrence/azuresqlcmd-adauth:latest"
+  image: "docker://bablulawrence/azuresqlcmd-adauth:0.1"
   # image: "Dockerfile"
   args:
     - ${{ inputs.tenant_id }}
