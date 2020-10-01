@@ -7,4 +7,4 @@ RUN pwsh -c "Install-Module -Name MSAL.PS -RequiredVersion 4.16.0.4 -Scope AllUs
 
 COPY entrypoint.sh Invoke-AzureSqlCmd.ps1 /
 
-ENTRYPOINT [ "./entrypoint.sh" ]
+ENTRYPOINT [ "/entrypoint.sh" ]
